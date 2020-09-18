@@ -148,10 +148,10 @@ interval = 2
 
 format-prefix = " "
 format-underline = ${colors.nord12}
-label = %percentage_used%%
+label = %gb_used%
 
 [module/storage]
-type = internal/fs
+type = internal/fs1
 mount-0 = /
 interval = 20
 fixed-values = true

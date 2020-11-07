@@ -2,9 +2,13 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 # screen setup
-exec --no-startup-id $HOME/.config/MonitorSetup/layout.sh
+exec --no-startup-id xrandr --output DVI-D-0 --off --output HDMI-0 --mode 2560x1440 --rate 60 --pos 0x0 --rotate left --output DP-2 --mode 3440x1440 --rate 144 --pos 1440x602 --rotate normal
+# picom
+# exec --no-startup-id picom -b -G --config $HOME/.config/picom/picom.conf
 # status bar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+# wallpaper
+exec_always feh --bg-fill /usr/share/backgrounds/Overlord.png /usr/share/backgrounds/vol142.png
 
 set $mod Mod4
 
@@ -12,19 +16,20 @@ set $mod Mod4
 font pango:Sudo Sans Mono 12
 
 # color aliases
-set $bg-color            #2e3440
-set $text-color          #d8dee9
-set $bg-color-selected   #5E81AC
-set $text-color-selected #d8dee9
-set $bg-color-urgent     #bf616a
-set $indicator-color     #88c0d0
+set $bg-color            #00051b
+set $text-color          #d4d9e4
+set $bg-color-selected   #0f1929
+set $text-color-selected #e8edf7
+set $bg-color-urgent     #1d0800
+set $indicator-color     #0073df
 
 # window styling
-#                       border             background        rtext                 indicator
-client.focused          $bg-color-selected $bg-color-selected $text-color-selected $indicator-color
-client.unfocused        $bg-color          $bg-color          $text-color          $bg-color
-client.focused_inactive $bg-color          $bg-color          $text-color          $bg-color
-client.urgent           $bg-color-urgent   $bg-color-urgent   $text-color          $bg-color-urgent
+#                       border             background         rtext                indicator        child_border
+client.focused          $bg-color          $bg-color-selected $text-color-selected $indicator-color $indicator-color
+client.unfocused        $bg-color          $bg-color          $text-color          $bg-color        $bg-color
+client.focused_inactive $bg-color          $bg-color          $text-color          $bg-color        $bg-color
+client.urgent           $bg-color-urgent   $bg-color-urgent   $text-color          $bg-color-urgent $bg-color-urgent
+default_border pixel 1
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -64,7 +69,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # start a terminal
-bindsym $mod+Return exec st
+bindsym $mod+Return exec alacritty
 
 # start program launcher
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
@@ -117,7 +122,7 @@ floating_modifier $mod
 mode "resize" {
 	
 	bindsym o resize shrink width 10 px or 10 ppt
-	bindsym Period resize grow height 10 px or 10 ppt
+	bindsym period resize grow height 10 px or 10 ppt
 	bindsym e resize shrink height 10 px or 10 ppt
 	bindsym u resize grow width 10 px or 10 ppt
 
@@ -135,10 +140,6 @@ mode "resize" {
 	bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "resize"
-
-# no title, 1 pixel border
-# new_window pixel 2
-new_window 1pixel
 
 # dont focus every window the mouse touches
 focus_follows_mouse no

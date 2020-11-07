@@ -10,12 +10,13 @@ I aim to only have to execute 1 script to have my system configured as I like it
 - dmenu (Appilcation Menu)
 - PolyBar (Status Bar)
 - Flameshot (Snipping Tool)
+- feh (Wallpaper)
 - PulseAudio (Audio)
 
 ## Monitors
 
-1. 144hz 2560x1080 Center
-2. 60hz 1920x1080 Left
+1. 144hz 3440x1440 Center
+2. 60hz 1440x2560 Left
 
 ## Font
 

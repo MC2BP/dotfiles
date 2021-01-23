@@ -11,7 +11,7 @@ I aim to only have to execute 1 script to have my system configured as I like it
 - PolyBar (Status Bar)
 - Flameshot (Snipping Tool)
 - feh (Wallpaper)
-- PulseAudio (Audio)
+- alsa (Audio)
 
 ## Monitors
 

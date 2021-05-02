@@ -2,16 +2,16 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 # screen setup
-exec --no-startup-id xrandr --output DVI-D-0 --off --output HDMI-0 --off --output DP-2 --mode 2560x1440 --rate 60 --pos 0x0 --rotate left --output DP-4 --mode 3440x1440 --rate 144 --pos 1440x602 --rotate normal
+# exec xrandr --output DVI-D-0 --off --output HDMI-0 --off --output DP-2 --mode 2560x1440 --rate 60 --pos 0x0 --rotate left --output DP-4 --mode 3440x1440 --rate 144 --pos 1440x802 --rotate normal
 # status bar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-#discord
-exec apulse /opt/Discord/Discord
+#spotifyd
+exec_always spotifyd --no-daemon
 
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
-font pango:Sudo Sans Mono 12
+font pango:Fira Code 12
 
 # color aliases
 set $bg-color            #00051b
@@ -54,6 +54,23 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
+# assign workspaces to monitors
+set $monitor_left output DP-2
+set $monitor_right output DP-4
+
+workspace $ws1 output $monitor_right
+workspace $ws3 output $monitor_right
+workspace $ws5 output $monitor_right
+workspace $ws6 output $monitor_right
+workspace $ws7 output $monitor_right
+workspace $ws9 output $monitor_right
+
+workspace $ws2 output $monitor_left
+workspace $ws4 output $monitor_left
+workspace $ws6 output $monitor_left
+workspace $ws8 output $monitor_left
+workspace $ws0 output $monitor_left
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -67,7 +84,10 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec --no-startup-id alacritty
+
+# start browser
+bindsym $mod+b exec --no-startup-id firefox
 
 # start program launcher
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu_run -i -l 5 -nb '$bg-color' -nf '$text-color' -sb '$bg-color-selected' -sf '$text-color-selected'"
@@ -127,6 +147,11 @@ mode "resize" {
 	bindsym period resize grow height 10 px or 10 ppt
 	bindsym e resize shrink height 10 px or 10 ppt
 	bindsym u resize grow width 10 px or 10 ppt
+	
+	bindsym Shift o resize shrink width 1 px or 1 ppt
+	bindsym Shift greater resize grow height 1 px or 1 ppt
+	bindsym Shift e resize shrink height 1 px or 1 ppt
+	bindsym Shift u resize grow width 1 px or 1 ppt
 
 	bindsym c move up 32px
 	bindsym h move left 32px
@@ -154,8 +179,8 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 # Volume controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -q set Master,0 1+ unmute"
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -q set Master,0 1- unmite"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer set Master 3%+"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer set Master 3%-"
 bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
 # Screen Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10

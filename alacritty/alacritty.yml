@@ -25,3 +25,15 @@ colors:
     magenta: '0xFF69FF'
     cyan:    '0x00BCEC'
     white:   '0xDBE6FE'
+font:
+  normal:
+    Default: 
+    - Fira Code
+    - Font Awesome 5 Free Solid
+    - MotoyaLMaru
+    style: Regular
+  bold:
+    family: FiraCode
+    style: Bold
+  size: 10.0
+

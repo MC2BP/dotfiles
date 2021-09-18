@@ -1,4 +1,4 @@
-"auto-install vim-plug"
+"auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plugin.vim'))
       silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -7,13 +7,11 @@ if empty(glob('~/.config/nvim/autoload/plugin.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'sheerun/vim-polyglot'
-  Plug 'scrooloose/NERDTree'
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'fatih/vim-go'
-  Plug 'rust-lang/rust.vim'
-  Plug 'ycm-core/YouCompleteMe'
-  Plug 'KaraMCC/vim-termtoggle'
-  Plug 'tpope/vim-fugitive'
-
+  Plug 'scrooloose/NERDTree'        " source tree
+  Plug 'jiangmiao/auto-pairs'       " add pairs
+  Plug 'KaraMCC/vim-termtoggle'     " Terminal
+  Plug 'tpope/vim-fugitive'         " Better git Support
+  " Plug 'neovim/nvim-lspconfig'      " lsp nvim config 
+  " Plug 'hrsh7th/nvim-compe'         " lsp completion
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()

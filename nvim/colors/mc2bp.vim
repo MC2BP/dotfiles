@@ -19,15 +19,21 @@ hi Function     ctermfg=14
 
 hi Pmenu        ctermfg=7         ctermbg=235
 hi PmenuSel     ctermfg=15        ctermbg=8
-
-" Go Syntax
-hi goFunctionCall ctermfg=229
-hi goVarDefs      ctermfg=14
-hi goVarAssign     ctermfg=14
-
-
 hi CursorLineNumber ctermfg=14
 hi CursorLineNr     ctermfg=14
+
+" Go Syntax
+hi goComment		ctermfg=77
+hi goFunctionCall ctermfg=229
+hi goType			ctermfg=51
+hi goFloat			ctermfg=51
+hi goFloats			ctermfg=51
+hi goSignedInts	ctermfg=51
+hi goUnsignedInts	ctermfg=51
+
+hi goDecimalInt ctermfg=173
+
+
 
  " hi StatusLine   ctermbg=7   ctermfg=17  cterm=NONE
 hi StatusLine   cterm=NONE  ctermfg=4

@@ -1,0 +1,29 @@
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt autocd
+unsetopt beep
+bindkey -v
+export LANG=en_US.utf8
+export LANGUAGE=en_US.utf8
+zstyle :compinstall filename '/home/ki/.zshrc'
+autoload -Uz compinit
+compinit
+autoload -U colors && colors
+
+autoload -Uz add-zsh-hook vcs_info
+setopt prompt_subst
+add-zsh-hook precmd vcs_info
+zstyle ':vcs_info:git:*' formats '%b'
+
+PROMPT='%F{green}%n@%m %F{white}%T %F{blue} %~ %F{yellow}${vcs_info_msg_0_}%f
+%F{white}> '
+
+alias please=doas
+alias vim=nvim
+alias xi=xbps-install
+alias xq=xbps-query
+alias xr=xbps-remove
+
+export CC=/usr/bin/gcc
+export GCC=/usr/bin/gcc

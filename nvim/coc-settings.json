@@ -2,9 +2,22 @@
 	"languageserver": {
 		"go": {
 			"command": "gopls",
+			"filetypes": ["go"],
 			"rootPatterns": ["go.mod"],
 			"trace.server": "verbose",
-			"filetypes": ["go"]
-		}
+			"initializationOptions": {
+				"hoverKind": "Structured"
+			}
+		},
+		"rust": {
+			"command": "rust-analyzer",
+			"rootPatterns": ["Cargo.toml"],
+			"trace.server": "verbose",
+			"filetypes": ["rs"]
+		},
+		"latex": {
+    		"command": "texlab",
+    		"filetypes": ["tex", "bib", "plaintex", "context"]
+  		}
 	}
 }

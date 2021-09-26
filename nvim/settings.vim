@@ -13,8 +13,10 @@ set noshowmode				" don't show stuff like -- INSERT --
 set clipboard=unnamedplus	" Copy paste between nvim and everything else
 set showmatch               " Show Matching parenthesis
 set nu
+set rnu
 set path+=**
 filetype plugin indent on
+set signcolumn=yes:1
 
 colorscheme mc2bp
 set autowrite
@@ -30,22 +32,47 @@ autocmd TermOpen * setlocal nonumber norelativenumber " automatically disable li
 
 set statusline=\ %f\ %y%=\ %p%%\ %l:%c\ \ \ 
 
-" --------
+
+" NERDTree Settings
+let NERDTreeQuitOnOpen=1
+let NERDTreeMapOpenInTab='n'
+nmap <C-b> :NERDTreeToggle<CR>
+" for when i might switch over to the 'built in' exlorer
+" nnoremap - :Lexplore<CR>
+" let g:netrw_altv = 1
+" let g:netrw_banner = 0
+" let g:netrw_liststyle = 3
+" let g:netrw_winsize = 25
+" autocmd FileType netrw setl bufhidden=delete
+
+" ToggleTerm
+nnoremap <silent> <C-d> :TermToggle <CR>    
+tnoremap <silent> <C-d> <C-\><C-n>:TermToggle <CR>    
+inoremap <silent> <C-d> <C-o>:TermToggle <CR>
+
+" vim-gitgutter
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_map_keys = 0
+hi GitGutterAdd		ctermfg=2
+hi GitGutterChange 	ctermfg=3
+hi GitGutterDelete 	ctermfg=1
+
+" nvim-dap
+nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
+nnoremap <silent> <F6> :lua require'dap'.step_over()<CR>
+nnoremap <silent> <F7> :lua require'dap'.step_into()<CR>
+nnoremap <silent> <F8> :lua require'dap'.step_out()<CR>
+
+nnoremap <silent> <F9> :lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <F4> :lua require'dapui'.toggle()<CR>
+
 " COC
-" --------
-set hidden
+set completeopt=menuone,noselect
+set completeopt=menu,menuone,noselect
 set nobackup
 set nowritebackup
 set updatetime=300
 set shortmess+=c
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
@@ -72,68 +99,6 @@ endif
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" NERDTree Settings
-let NERDTreeQuitOnOpen=1
-let NERDTreeMapOpenInTab='n'
-nmap <C-b> :NERDTreeToggle<CR>
-
-" ToggleTerm
-nnoremap <silent> <C-d> :TermToggle <CR>    
-tnoremap <silent> <C-d> <C-\><C-n>:TermToggle <CR>    
-inoremap <silent> <C-d> <C-o>:TermToggle <CR>
-
-" Autocompletion settings
-set completeopt=menuone,noselect
-set completeopt=menu,menuone,noselect
-
-" Golang Settings
-" let g:go_highlight_function_calls = 1
-" let g:go_highlight_extra_types = 1
-" let g:go_highlight_types = 1
-" let g:go_highlight_variable_declarations = 1
-" let g:go_highlight_variable_assignments = 1
-
-" let g:compe = {}
-" let g:compe.enabled = v:true
-" let g:compe.autocomplete = v:true
-" let g:compe.debug = v:false
-" let g:compe.min_length = 1
-" let g:compe.preselect = 'enable'
-" let g:compe.throttle_time = 80
-" let g:compe.source_timeout = 200
-" let g:compe.incomplete_delay = 200
-" let g:compe.max_abbr_width = 100
-" let g:compe.max_kind_width = 100
-" let g:compe.max_menu_width = 100
-" let g:compe.documentation = v:true
-
-" let g:compe.source = {}
-" let g:compe.source.path = v:true
-" let g:compe.source.buffer = v:true
-" let g:compe.source.calc = v:true
-" let g:compe.source.nvim_lsp = v:true
-" let g:compe.source.nvim_lua = v:true
-" let g:compe.source.vsnip = v:true
-" let g:compe.source.ultisnips = v:true
-
-" LSP keybindings
-"nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-"nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
-"nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-"nnorema <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-"nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-"nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-"nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-"nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-
-"inoremap <silent><expr> <C-Space> compe#complete()
-"inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-"inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-
-" Language Server Support
-" lua << EOF
-"require'lspconfig'.gopls.setup{}
-"require'lspconfig'.rust_analyzer.setup{}
-"require'lspconfig'.cssls.setup{}
-"require'lspconfig'.html.setup{}
-"EOF
+" LaTeX
+let g:latex_pdf_viewer="mupdf"
+let g:letx_engine="pdflatex"

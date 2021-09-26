@@ -1,70 +1,49 @@
-# My Configuration
+# My Dotfiles
 
-This is a repository for my configuration.
-I aim to only have to execute 1 script to have my system configured as I like it. I use dvorak so a lot of my keybindings will seem weird to you, so I advice you to not use my config, switch to dvorak or reconfigure it.
+Hello and welcome to my dotfiles. I hope you can use them for your system, but be aware, that my system's configuration is quite odd.
+I use a modified version of the dvorak layout and most shortcuts are with dvorak in mind. 
+So if you're not a dvorak user, you should change the keybindings. 
 
-## Software used
+## Software I use
 
+### Desktop
+- lightdm (Display Manager)
+- lightdm-mini-greetr (greeter)
 - i3wm (Window Manager)
 - i3lock (Lock system)
 - dmenu (Appilcation Menu)
 - PolyBar (Status Bar)
 - Flameshot (Snipping Tool)
 - feh (Wallpaper)
-- alsa (Audio)
+- picom (transparency)
+
+### Audio
+- pulseaudio (Audio)
+- spotifyD (Apotify Audio Client)
+- spotify-tui (Spotify Interface)
+
+### Development
+- st (Terminal Emulator)
+- zsh (Shell)
+- vim (IDE)
 
 ## Monitors
+I have a dual monitor setup. The configuration for them can be found in ```light/screen.sh```.
 
 1. 144hz 3440x1440 Center
-2. 60hz 1440x2560 Left
+2. 60hz 1440x2560 Left (In pivot mode)
 
 ## Font
 
-I use the [Sudo](https://www.kutilek.de/sudo-font/) font which you will need to download manually. 
+I use [FiraCode](https://github.com/tonsky/FiraCode) font with ligatures, which you will need to install manually.
 
-## Use Configuration
+## NeoVim
 
-1. make sure you have installed all applications necessairy.
-2. clone this repository.
-3. execute the ```install.sh``` script.
+I use NeoVim as my IDE with a few plugins. 
 
-## i3 Window Manager
+### Features
+- Autocompletion for LaTeX, Golang, Rust
+- Debugging only for Golang atm
+- Preview for LaTeX using mupdf and pdftex
+- Custom theme
 
-I use the tiling window manager [i3](https://i3wm.org/).
-For the application menu I use dmenu.
-
-**Keybindings**
-
-Modkey (mod) is the Windowskey.
-
-| Keybinding | Action |
-| ---------- | ------ |
-| mod return | open simple terminal |
-| mod d | open dmenu |
-| mod shift q | kill application in focus |
-| mod arrow_keys | change focus in the according direction |
-| mod shift arrow_keys | move in according direction |
-| mod v | vertical splitting |
-| mod z | horizontal splitting |
-| mod s | stacking layout |
-| mod w | tabbed layout |
-| mod e | toggle layout |
-| mod shift space | toggle floating |
-| mod space | change toggle between floating and tiling windows |
-| mod shift x | lock system |
-| mod print | open flameshot |
-
-
-| **mod r** | **enter resize mode** |
-| ---- | ---------- |
-| o | shrink width 10 |
-| e | grow width 10 |
-| e | shrink height 10 |
-| Period | grow height 10 |
-| h | move left 20 |
-| n | move right 20 |
-| t | move 20 down |
-| c | move 20 up |
-| return | exit resize mode |
-| escape | exit resize mode |
-| mod r | escape resize mode |

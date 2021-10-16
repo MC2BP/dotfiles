@@ -15,7 +15,7 @@ So if you're not a dvorak user, you should change the keybindings.
 - PolyBar (Status Bar)
 - Flameshot (Snipping Tool)
 - feh (Wallpaper)
-- picom (transparency)
+- xcompmgr (transparency)
 
 ### Audio
 - pulseaudio (Audio)
@@ -46,4 +46,3 @@ I use NeoVim as my IDE with a few plugins.
 - Debugging only for Golang atm
 - Preview for LaTeX using mupdf and pdftex
 - Custom theme
-

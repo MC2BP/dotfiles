@@ -1,22 +1,25 @@
-syntax enable				"enable syntax highligting
-set nowrap					" don't display long lines on multiple lines
-set encoding=utf-8
-set ruler					" always show cursor position
-set splitright				" Horizontal splits will automatically be to the right
-set splitbelow  			" Vertical splits will always to the bottom
-set t_Co=256				" Support 256 colors
-set noexpandtab			" don't converts tabs to spaces
-set tabstop=3				" 1 tab eq 4 spaces
-set shiftwidth=3
-set autoindent				" auto indentation
-set noshowmode				" don't show stuff like -- INSERT --
+syntax enable					" enable syntax highligting
+set nowrap						" don't display long lines on multiple lines
+set encoding=utf-8 			" set encoding
+set ruler						" always show cursor position
+set splitright					" Horizontal splits will automatically be to the right
+set splitbelow  				" Vertical splits will always to the bottom
+set t_Co=256					" Support 256 colors
+set noexpandtab				" don't converts tabs to spaces
+set tabstop=3					" 1 tab eq 4 spaces
+set shiftwidth=3 				" I use an indent of 3, come fight me
+set autoindent					" auto indentation
+set noshowmode					" don't show stuff like -- INSERT --
 set clipboard=unnamedplus	" Copy paste between nvim and everything else
-set showmatch               " Show Matching parenthesis
-set nu
-set rnu
-set path+=**
-filetype plugin indent on
-set signcolumn=yes:1
+set showmatch              " Show Matching parenthesis
+set nu 							" Line numbers
+set rnu 							" relative line numbers
+set path+=** 					" for better file search
+filetype plugin indent on 	
+set signcolumn=yes:1 		" seperate column for signs
+set foldmethod=indent 		" folding code sections
+set foldenable 				" enable folding
+set scrolloff=5 				" show next 5 lines
 
 colorscheme mc2bp
 set autowrite
@@ -44,6 +47,9 @@ nmap <C-b> :NERDTreeToggle<CR>
 " let g:netrw_liststyle = 3
 " let g:netrw_winsize = 25
 " autocmd FileType netrw setl bufhidden=delete
+
+" FZF
+nnoremap <silent> <C-p> :Files <CR>
 
 " ToggleTerm
 nnoremap <silent> <C-d> :TermToggle <CR>    
@@ -101,4 +107,4 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 
 " LaTeX
 let g:latex_pdf_viewer="mupdf"
-let g:letx_engine="pdflatex"
+" let g:letx_engine="pdflatex"

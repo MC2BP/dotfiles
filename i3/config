@@ -92,7 +92,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+Return exec --no-startup-id st
 
 # start browser
-bindsym $mod+b exec --no-startup-id firefox
+bindsym $mod+b exec --no-startup-id surf
 
 # start program launcher
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu_run -i -l 5 -nb '$bg-color' -nf '$text-color' -sb '$bg-color-selected' -sf '$text-color-selected'"

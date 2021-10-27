@@ -59,5 +59,6 @@ xkb_symbols "custom-dvorak" {
     key <BKSL> { [  backslash,  bar             ]       };
     key <SPCE> { [  space,      space, BackSpace, Delete ]    };
     key <CAPS> { [  Escape                      ]       };
+    key <LSGT> { [   Super_L, Super_L           ]       };
 };
 

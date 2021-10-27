@@ -1,16 +1,31 @@
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _complete _ignored
+zstyle ':completion:*' file-sort name
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' ignore-parents parent
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
+zstyle ':completion:*' preserve-prefix '//[^/]##/'
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+zstyle :compinstall filename '/home/ki/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt autocd
+# End of lines configured by zsh-newuser-install
+
 unsetopt beep
 bindkey -v
 export LANG=en_US.utf8
 export LANGUAGE=en_US.utf8
 zstyle :compinstall filename '/home/ki/.zshrc'
-autoload -Uz compinit
-compinit
-autoload -U colors && colors
-
 autoload -Uz add-zsh-hook vcs_info
 setopt prompt_subst
 add-zsh-hook precmd vcs_info
@@ -27,3 +42,5 @@ alias xr=xbps-remove
 
 export CC=/usr/bin/gcc
 export GCC=/usr/bin/gcc
+export PATH=$HOME/go/bin:$PATH
+source "$HOME/.cargo/env"

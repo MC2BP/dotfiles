@@ -1,6 +1,9 @@
 lua <<EOF
 local dap = require('dap')
-  -- config for go debugger delve
+-- config for go debugger delve
+--=====================================================================================
+--   Golang
+--=====================================================================================
   dap.adapters.go = function(callback, config)
     local stdout = vim.loop.new_pipe(false)
     local handle
@@ -34,39 +37,6 @@ local dap = require('dap')
       end,
       100)
   end
-  -- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
-
-  -- config for rust, cpp and c debugger 
-  dap.configurations.cpp = {
-  {
-    name = "Launch",
-    type = "lldb",
-    request = "launch",
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-    args = {},
-
-    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-    --
-    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-    --
-    -- Otherwise you might get the following error:
-    --
-    --    Error on launch: Failed to attach to the target process
-    --
-    -- But you should be aware of the implications:
-    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-    runInTerminal = false,
-  },
-}
-dap.configurations.c = dap.configurations.cpp
-dap.configurations.rust = dap.configurations.cpp
-
-
-  -- build configurations
   dap.configurations.go = {
     {
       type = "go",
@@ -89,14 +59,51 @@ dap.configurations.rust = dap.configurations.cpp
       mode = "test",
       program = "./${relativeFileDirname}"
     } 
+  }
+  
+--=====================================================================================
+--   C++
+--=====================================================================================
+--=====================================================================================
+--   Rust & CPP
+--=====================================================================================
+dap.adapters.lldb = {
+  type = 'executable',
+  command = '/usr/bin/lldb-vscode', -- adjust as needed
+  name = "lldb"
 }
-dap.defaults.fallback.external_terminal = {
-  command = '/usr/local/bin/st';
-  args = {'-e'};
+dap.configurations.rust= {
+  {
+    name = "Debug",
+    type = "lldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {},
+    runInTerminal = false,
+  },
 }
+dap.configurations.cpp = {
+  {
+    name = "Launch file",
+    type = "lldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = true,
+  },
+}
+dap.configurations.c = dap.configurations.cpp
 dap.defaults.fallback.force_external_terminal = true
 
---DAP-UI Settings
+--=====================================================================================
+--   DAP-UI
+--=====================================================================================
 require("dapui").setup({
   icons = { expanded = "▾", collapsed = "▸" },
   mappings = {
@@ -108,23 +115,18 @@ require("dapui").setup({
     repl = "r",
   },
   sidebar = {
-    open_on_start = true,
     -- You can change the order of elements in the sidebar
     elements = {
       -- Provide as ID strings or tables with "id" and "size" keys
-      {
-        id = "scopes",
-        size = 0.25, -- Can be float or integer > 1
-      },
-      { id = "breakpoints", size = 0.25 },
-      { id = "stacks", size = 0.25 },
+      { id = "scopes", size = 0.5 },
       { id = "watches", size = 00.25 },
+      { id = "breakpoints", size = 0.25 },
+      -- { id = "stacks", size = 0.25 },
     },
     size = 40,
     position = "left", -- Can be "left", "right", "top", "bottom"
   },
   tray = {
-    open_on_start = true,
     elements = { "repl" },
     size = 10,
     position = "bottom", -- Can be "left", "right", "top", "bottom"
@@ -138,4 +140,10 @@ require("dapui").setup({
   },
   windows = { indent = 1 },
 })
+
+local dap, dapui = require('dap'), require('dapui')
+dap.listeners.after.event_initialized['dapui_config'] = function() dapui.open() end
+dap.listeners.before.event_terminated['dapui_config'] = function() dapui.close() end
+dap.listeners.before.event_exited['dapui_config'] = function() dapui.close() end
 EOF
+

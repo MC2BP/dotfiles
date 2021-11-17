@@ -1,69 +1,77 @@
+" Syntax 
 syntax enable					" enable syntax highligting
-set nowrap						" don't display long lines on multiple lines
-set encoding=utf-8 			" set encoding
-set ruler						" always show cursor position
-set splitright					" Horizontal splits will automatically be to the right
-set splitbelow  				" Vertical splits will always to the bottom
-set t_Co=256					" Support 256 colors
+filetype plugin indent on 	
 set noexpandtab				" don't converts tabs to spaces
-set tabstop=3					" 1 tab eq 4 spaces
+set tabstop=3					" 1 tab eq 3 spaces
 set shiftwidth=3 				" I use an indent of 3, come fight me
 set autoindent					" auto indentation
-set noshowmode					" don't show stuff like -- INSERT --
-set clipboard=unnamedplus	" Copy paste between nvim and everything else
-set showmatch              " Show Matching parenthesis
+
+" UI
+colorscheme mc2bp
+set cursorline
+set nowrap						" don't display long lines on multiple lines
 set nu 							" Line numbers
 set rnu 							" relative line numbers
-set path+=** 					" for better file search
-filetype plugin indent on 	
 set signcolumn=yes:1 		" seperate column for signs
+set t_Co=256					" Support 256 colors
+set showmatch              " Show Matching parenthesis
 set foldmethod=indent 		" folding code sections
 set foldenable 				" enable folding
 set scrolloff=5 				" show next 5 lines
-
-colorscheme mc2bp
-set autowrite
-
-" Window Navigation
-map <C-T> <C-W><C-J>
-map <C-t> <C-W><C-J>
-map <C-C> <C-W><C-K>
-map <C-N> <C-W><C-L>
-map <C-H> <C-W><C-H>
-
+set ruler						" always show cursor position
+set noshowmode					" don't show stuff like -- INSERT --
+set statusline=\ %{FugitiveStatusline()}\ %f\ %y%=\ %p%%\ %l:%c\ 
 autocmd TermOpen * setlocal nonumber norelativenumber " automatically disable line numbers in terminal
 
-set statusline=\ %f\ %y%=\ %p%%\ %l:%c\ \ \ 
+" Splits and navigation
+set splitright					" Horizontal splits will automatically be to the right
+set splitbelow  				" Vertical splits will always to the bottom
+map <C-t> <C-W><C-J>
+map <C-c> <C-W><C-K>
+map <C-n> <C-W><C-L>
+map <C-h> <C-W><C-H>
+map <C-Up> :resize +5<CR>
+map <C-Down> :resize -5<CR>
+map <C-Right> :vertical resize +5<CR>
+map <C-Left> :vertical resize -5<CR>
+
+" Other settings
+set encoding=utf-8 			" set encoding
+set clipboard=unnamedplus	" Copy paste between nvim and everything else
+set path+=** 					" for better file search
 
 
-" NERDTree Settings
+" =====================================================================================
+"    NerdTree
+" =====================================================================================
 let NERDTreeQuitOnOpen=1
 let NERDTreeMapOpenInTab='n'
 nmap <C-b> :NERDTreeToggle<CR>
-" for when i might switch over to the 'built in' exlorer
-" nnoremap - :Lexplore<CR>
-" let g:netrw_altv = 1
-" let g:netrw_banner = 0
-" let g:netrw_liststyle = 3
-" let g:netrw_winsize = 25
-" autocmd FileType netrw setl bufhidden=delete
 
-" FZF
+" =====================================================================================
+"    FZF
+" =====================================================================================
 nnoremap <silent> <C-p> :Files <CR>
 
-" ToggleTerm
+" =====================================================================================
+"    ToggleTerm
+" =====================================================================================
 nnoremap <silent> <C-d> :TermToggle <CR>    
 tnoremap <silent> <C-d> <C-\><C-n>:TermToggle <CR>    
 inoremap <silent> <C-d> <C-o>:TermToggle <CR>
 
-" vim-gitgutter
+" =====================================================================================
+"    Vim-GitGutter
+" =====================================================================================
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_map_keys = 0
 hi GitGutterAdd		ctermfg=2
 hi GitGutterChange 	ctermfg=3
 hi GitGutterDelete 	ctermfg=1
 
-" nvim-dap
+" =====================================================================================
+"    Nvim-DAP
+" =====================================================================================
 nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
 nnoremap <silent> <F6> :lua require'dap'.step_over()<CR>
 nnoremap <silent> <F7> :lua require'dap'.step_into()<CR>
@@ -72,7 +80,9 @@ nnoremap <silent> <F8> :lua require'dap'.step_out()<CR>
 nnoremap <silent> <F9> :lua require'dap'.toggle_breakpoint()<CR>
 nnoremap <silent> <F4> :lua require'dapui'.toggle()<CR>
 
-" COC
+" =====================================================================================
+"    COC
+" =====================================================================================
 set completeopt=menuone,noselect
 set completeopt=menu,menuone,noselect
 set nobackup
@@ -100,11 +110,74 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Code editing
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> rn <Plug>(coc-rename)
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Add OR command to organize imports
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" LaTeX
+" =====================================================================================
+"    LaTeX
+" =====================================================================================
 let g:latex_pdf_viewer="mupdf"
-" let g:letx_engine="pdflatex"
+
+" =====================================================================================
+"    vim-rainbowbrackets
+" =====================================================================================
+let g:rainbowbrackets_colors =
+	\ [
+	\   'ctermfg=87',
+	\   'ctermfg=5',
+	\   'ctermfg=226',
+	\   'ctermfg=112'
+	\ ]
+let g:rainbowbrackets_enable_round_brackets = 1
+let g:rainbowbrackets_enable_curly_brackets = 1
+let g:rainbowbrackets_enable_square_brackets = 1
+let g:rainbowbrackets_enable_angle_brackets = 0
+
+" =====================================================================================
+"    vim-polyglot
+" =====================================================================================
+let g:go_fold_enable = ['import']
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1

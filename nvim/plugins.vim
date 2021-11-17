@@ -23,6 +23,8 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'mfussenegger/nvim-dap' 								" Debugger
 	Plug 'rcarriga/nvim-dap-ui' 								" UI for Debbuger
 	Plug 'neoclide/coc.nvim', {'branch': 'release'} 	" Autocompletion
+	Plug 'sheerun/vim-polyglot' 								" Improved syntax highliting
+	Plug 'eiiches/vim-rainbowbrackets' 					" Rainbow parenthesis
 
 	"LaTeX
 	Plug 'conornewton/vim-latex-preview'	

@@ -6,10 +6,9 @@ highlight clear
 let g:colors_name = "mc2bp"
 
 " Cursor
-hi CursorLine 			ctermbg=NONE cterm=NONE
-hi CursorLineNumber	ctermfg=15 ctermfg=17
-hi CursorLineNr		ctermfg=15 ctermbg=17
-hi LineNr 				ctermfg=4  ctermbg=NONE
+hi CursorLine 			ctermbg=NONE 	cterm=NONE
+hi CursorLineNumber	ctermfg=15 		ctermfg=8
+hi CursorLineNr		ctermfg=15 		ctermbg=8
 hi MatchParen 			ctermbg=8
 
 " Code and Text
@@ -28,25 +27,23 @@ hi Function     ctermfg=228
 hi EndOfBuffer	 ctermfg=black
 
 " SignColumn
-hi SignColumn	ctermbg=NONE	ctermfg=7
+hi SignColumn	ctermbg=NONE	ctermfg=244
+hi LineNr 		ctermfg=244   	ctermbg=NONE
 
 " Folds
 hi Folded 		cterm=NONE ctermfg=7 ctermbg=NONE
 
 " Menus
-hi Pmenu					ctermfg=254        ctermbg=NONE
-hi PmenuSel    		ctermfg=254        ctermbg=17
+hi Pmenu					ctermfg=244        ctermbg=0
+hi PmenuSel    		ctermfg=15         ctermbg=8
 
 " StatusLine
-hi StatusLine   cterm=NONE ctermbg=16 ctermfg=15
-hi StatusLineNC cterm=NONE ctermbg=16 ctermfg=8
-hi Tabline      cterm=NONE ctermfg=7
-hi TablineFill  cterm=NONE
-hi VertSplit    cterm=NONE ctermfg=4
-
-" Tabline
-hi TablineSel 	 cterm=NONE ctermbg=16 ctermfg=254
-hi Tabline 		 cterm=NONE ctermbg=16 ctermfg=245
+hi StatusLine   cterm=NONE ctermbg=8  ctermfg=15
+hi StatusLineNC cterm=NONE ctermbg=8  ctermfg=244
+hi Tabline      cterm=NONE ctermbg=8  ctermfg=244
+hi TablineFill  cterm=NONE ctermbg=8  ctermfg=15
+hi TablineSel   cterm=NONE ctermbg=8  ctermfg=15
+hi VertSplit    cterm=NONE ctermbg=8  ctermfg=8
 
 "------------------------------------
 "                COC

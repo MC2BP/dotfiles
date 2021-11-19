@@ -15,13 +15,84 @@ set rnu 							" relative line numbers
 set signcolumn=yes:1 		" seperate column for signs
 set t_Co=256					" Support 256 colors
 set showmatch              " Show Matching parenthesis
-set foldmethod=indent 		" folding code sections
+set foldmethod=manual 		" folding code sections
 set foldenable 				" enable folding
 set scrolloff=5 				" show next 5 lines
 set ruler						" always show cursor position
 set noshowmode					" don't show stuff like -- INSERT --
-set statusline=\ %{FugitiveStatusline()}\ %f\ %y%=\ %p%%\ %l:%c\ 
+set laststatus=1 				" show status line if more than 1 file is open
+set statusline=\ %f\ %Y%=\ %p%%\ %l:%c\ 
 autocmd TermOpen * setlocal nonumber norelativenumber " automatically disable line numbers in terminal
+
+" Tabline
+set showtabline=2
+"/set tabline=%{MyTabLine()}\ \ %{tabpagenr()}\ %=\ 
+set tabline=%!MyTabLine()\   " custom tab pages line
+function MyTabLine()
+	let s = '' " complete tabline goes here
+	" loop through each tab page
+	for t in range(tabpagenr('$'))
+		" set highlight
+		if t + 1 == tabpagenr()
+			let s .= '%#TabLineSel#'
+		else
+			let s .= '%#TabLine#'
+		endif
+		" set the tab page number (for mouse clicks)
+		let s .= '%' . (t + 1) . 'T'
+		let s .= ' '
+		" set page number string
+		let s .= t + 1 . ' '
+		" get buffer names and statuses
+		let n = ''      "temp string for buffer names while we loop and check buftype
+		let m = 0       " &modified counter
+		let bc = len(tabpagebuflist(t + 1))     "counter to avoid last ' '
+		" loop through each buffer in a tab
+		for b in tabpagebuflist(t + 1)
+			" buffer types: quickfix gets a [Q], help gets [H]{base fname}
+			" others get 1dir/2dir/3dir/fname shortened to 1/2/3/fname
+			if getbufvar( b, "&buftype" ) == 'help'
+				let n .= '[H]' . fnamemodify( bufname(b), ':t:s/.txt$//' )
+			elseif getbufvar( b, "&buftype" ) == 'quickfix'
+				let n .= '[Q]'
+			else
+				let n .= pathshorten(bufname(b))
+			endif
+			" check and ++ tab's &modified count
+			if getbufvar( b, "&modified" )
+				let m += 1
+			endif
+			" no final ' ' added...formatting looks better done later
+			if bc > 1
+				let n .= ' '
+			endif
+			let bc -= 1
+		endfor
+		" add modified label [n+] where n pages in tab are modified
+		if m > 0
+			let s .= '[' . m . '+]'
+		endif
+		" select the highlighting for the buffer names
+		" my default highlighting only underlines the active tab
+		" buffer names.
+		if t + 1 == tabpagenr()
+			let s .= '%#TabLineSel#'
+		else
+			let s .= '%#TabLine#'
+		endif
+		" add buffer names
+		if n == ''
+			let s.= '[New]'
+		else
+			let s .= n
+		endif
+		" switch to no underlining and add final space to buffer list
+		let s .= ' '
+	endfor
+	" after the last tab fill with TabLineFill and reset tab page nr
+	let s .= '%#TabLineFill#%T %= %{FugitiveStatusline()} '
+	return s
+endfunction
 
 " Splits and navigation
 set splitright					" Horizontal splits will automatically be to the right
@@ -38,14 +109,13 @@ map <C-Left> :vertical resize -5<CR>
 " Other settings
 set encoding=utf-8 			" set encoding
 set clipboard=unnamedplus	" Copy paste between nvim and everything else
-set path+=** 					" for better file search
-
 
 " =====================================================================================
 "    NerdTree
 " =====================================================================================
 let NERDTreeQuitOnOpen=1
 let NERDTreeMapOpenInTab='n'
+let NERDTreeShowHidden=1
 nmap <C-b> :NERDTreeToggle<CR>
 
 " =====================================================================================
@@ -181,3 +251,21 @@ let g:go_highlight_fields = 1
 let g:go_highlight_format_strings = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_highlight_variable_assignments = 1
+
+" =====================================================================================
+"    NERDTree-git-plugin
+" =====================================================================================
+let g:NERDTreeGitStatusUseNerdFonts = 1 " you should install nerdfonts by yourself. default: 0
+let g:NERDTreeGitStatusConcealBrackets = 1 " default: 0
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+	 \ 'Modified'  :'~',
+	 \ 'Staged'    :'✚',
+	 \ 'Untracked' :'✭',
+	 \ 'Renamed'   :'➜',
+	 \ 'Unmerged'  :'═',
+	 \ 'Deleted'   :'-',
+	 \ 'Dirty'     :'~',
+	 \ 'Ignored'   :'☒',
+	 \ 'Clean'     :'✔︎',
+	 \ 'Unknown'   :'?',
+	 \ }

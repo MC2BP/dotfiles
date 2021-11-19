@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Fira Code:pixelsize=15:antialias=true:autohint=true";
+static char *font = "Fira Code, Nerd Font:pixelsize=15:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -99,17 +99,20 @@ float alpha = 0.8;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
     /* 8 normal colors */
-    "#000119",
+	 "#00051b",
+    //"#000119",
     "#db0726",
     "#00c06f",
     "#e3e600",
     "#0073df",
     "#ff69ff",
     "#00acde",
-    "#dbe6fe",
+	 "#b7c1d3",
+	 //"#d8dee9",
 
     /* 8 bright colors */
-    "#5d577c",
+	 "#041021",
+    //"#5d577c",
     "#ff3442",
     "#00d581",
     "#f3f600",
@@ -132,8 +135,8 @@ static const char *colorname[] = {
  */
 unsigned int defaultfg = 257;
 unsigned int defaultbg = 256;
-static unsigned int defaultcs = 7;
-static unsigned int defaultrcs = 7;
+static unsigned int defaultcs = 15;
+static unsigned int defaultrcs = 15;
 
 /*
  * Default shape of cursor

@@ -6,18 +6,20 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 	" Editor
-	Plug 'jiangmiao/auto-pairs'       " adds pairs
+	Plug 'jiangmiao/auto-pairs'      " adds pairs
 
 	" Navigation
-	Plug 'scrooloose/NERDTree' 		 " Directory Tree
-	Plug 'junegunn/fzf.vim' 			 " File Search
+	Plug 'scrooloose/NERDTree' |
+		\ Plug 'Xuyuanp/nerdtree-git-plugin' |	
+		\ Plug 'ryanoasis/vim-devicons' 			" File explorer with git integration and icons
+	Plug 'junegunn/fzf.vim' 			 			" File Search
 
 	" Terminal 
 	Plug 'KaraMCC/vim-termtoggle'     " Terminal
 
 	" GIT
-	Plug 'tpope/vim-fugitive' 			" Use git directly in vim through :G
-	Plug 'airblade/vim-gitgutter' 	" Show added and removed lines
+	Plug 'tpope/vim-fugitive' 				" Git integration
+	Plug 'airblade/vim-gitgutter' 		" Show added and removed lines
 
 	" Programming 
 	Plug 'mfussenegger/nvim-dap' 								" Debugger

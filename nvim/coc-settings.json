@@ -13,7 +13,7 @@
 			"command": "rust-analyzer",
 			"rootPatterns": ["Cargo.toml"],
 			"trace.server": "verbose",
-			"filetypes": ["rs"]
+			"filetypes": ["rust","rs"]
 		},
 		"ccls": {
 	   	"command": "ccls",

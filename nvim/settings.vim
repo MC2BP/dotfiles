@@ -15,8 +15,8 @@ set rnu 							" relative line numbers
 set signcolumn=yes:1 		" seperate column for signs
 set t_Co=256					" Support 256 colors
 set showmatch              " Show Matching parenthesis
-set foldmethod=manual 		" folding code sections
-set foldenable 				" enable folding
+set foldmethod=indent 		" folding code sections
+set foldlevel=99 				" sets the folds open by default
 set scrolloff=5 				" show next 5 lines
 set ruler						" always show cursor position
 set noshowmode					" don't show stuff like -- INSERT --
@@ -24,9 +24,26 @@ set laststatus=1 				" show status line if more than 1 file is open
 set statusline=\ %f\ %Y%=\ %p%%\ %l:%c\ 
 autocmd TermOpen * setlocal nonumber norelativenumber " automatically disable line numbers in terminal
 
+map Q <NOP> 					" Disable ex mode
+
+" Splits and navigation
+set splitright					" Horizontal splits will automatically be to the right
+set splitbelow  				" Vertical splits will always to the bottom
+map <C-t> <C-W><C-J>
+map <C-c> <C-W><C-K>
+map <C-n> <C-W><C-L>
+map <C-h> <C-W><C-H>
+map <Space>c :resize +5<CR>
+map <Space>t :resize -5<CR>
+map <Space>n :vertical resize +5<CR>
+map <Space>h :vertical resize -5<CR>
+
+" Other settings
+set encoding=utf-8 			" set encoding
+set clipboard=unnamedplus	" Copy paste between nvim and everything else
+
 " Tabline
 set showtabline=2
-"/set tabline=%{MyTabLine()}\ \ %{tabpagenr()}\ %=\ 
 set tabline=%!MyTabLine()\   " custom tab pages line
 function MyTabLine()
 	let s = '' " complete tabline goes here
@@ -94,22 +111,6 @@ function MyTabLine()
 	return s
 endfunction
 
-" Splits and navigation
-set splitright					" Horizontal splits will automatically be to the right
-set splitbelow  				" Vertical splits will always to the bottom
-map <C-t> <C-W><C-J>
-map <C-c> <C-W><C-K>
-map <C-n> <C-W><C-L>
-map <C-h> <C-W><C-H>
-map <C-Up> :resize +5<CR>
-map <C-Down> :resize -5<CR>
-map <C-Right> :vertical resize +5<CR>
-map <C-Left> :vertical resize -5<CR>
-
-" Other settings
-set encoding=utf-8 			" set encoding
-set clipboard=unnamedplus	" Copy paste between nvim and everything else
-
 " =====================================================================================
 "    NerdTree
 " =====================================================================================
@@ -117,6 +118,19 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeMapOpenInTab='n'
 let NERDTreeShowHidden=1
 nmap <C-b> :NERDTreeToggle<CR>
+let g:NERDTreeGitStatusUseNerdFonts = 1 " you should install nerdfonts by yourself. default: 0
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+	 \ 'Modified'  :'~',
+	 \ 'Staged'    :'✚',
+	 \ 'Untracked' :'✭',
+	 \ 'Renamed'   :'➜',
+	 \ 'Unmerged'  :'═',
+	 \ 'Deleted'   :'-',
+	 \ 'Dirty'     :'~',
+	 \ 'Ignored'   :'☒',
+	 \ 'Clean'     :'✔︎',
+	 \ 'Unknown'   :'?',
+	 \ }
 
 " =====================================================================================
 "    FZF
@@ -157,7 +171,7 @@ set completeopt=menuone,noselect
 set completeopt=menu,menuone,noselect
 set nobackup
 set nowritebackup
-set updatetime=300
+set updatetime=100
 set shortmess+=c
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -252,20 +266,3 @@ let g:go_highlight_format_strings = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_highlight_variable_assignments = 1
 
-" =====================================================================================
-"    NERDTree-git-plugin
-" =====================================================================================
-let g:NERDTreeGitStatusUseNerdFonts = 1 " you should install nerdfonts by yourself. default: 0
-let g:NERDTreeGitStatusConcealBrackets = 1 " default: 0
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-	 \ 'Modified'  :'~',
-	 \ 'Staged'    :'✚',
-	 \ 'Untracked' :'✭',
-	 \ 'Renamed'   :'➜',
-	 \ 'Unmerged'  :'═',
-	 \ 'Deleted'   :'-',
-	 \ 'Dirty'     :'~',
-	 \ 'Ignored'   :'☒',
-	 \ 'Clean'     :'✔︎',
-	 \ 'Unknown'   :'?',
-	 \ }

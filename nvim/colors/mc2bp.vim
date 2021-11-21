@@ -9,7 +9,7 @@ let g:colors_name = "mc2bp"
 hi CursorLine 			ctermbg=NONE 	cterm=NONE
 hi CursorLineNumber	ctermfg=15 		ctermfg=8
 hi CursorLineNr		ctermfg=15 		ctermbg=8
-hi MatchParen 			ctermbg=8
+hi MatchParen 			ctermbg=244
 
 " Code and Text
 hi NonText      ctermfg=4
@@ -31,7 +31,7 @@ hi SignColumn	ctermbg=NONE	ctermfg=244
 hi LineNr 		ctermfg=244   	ctermbg=NONE
 
 " Folds
-hi Folded 		cterm=NONE ctermfg=7 ctermbg=NONE
+hi Folded 		cterm=NONE ctermfg=7 ctermbg=8
 
 " Menus
 hi Pmenu					ctermfg=244        ctermbg=0
@@ -48,7 +48,19 @@ hi VertSplit    cterm=NONE ctermbg=8  ctermfg=8
 "------------------------------------
 "                COC
 "------------------------------------
-hi CocHighlightText ctermbg=8
+hi CocHighlightText ctermbg=244
+
+"------------------------------------
+"                GO
+"------------------------------------
+hi DaPUIDecoration 		ctermfg=87
+hi DaPUIScope           ctermfg=87
+hi DaPUIVariable 			ctermfg=87
+hi DaPUIType 				ctermfg=15
+hi DaPUIValue 				ctermfg=173
+hi DaPUIWatchesError 	ctermfg=1
+hi DaPUIWatchesEmpty 	ctermfg=244
+hi DaPUIWatchesValue 	ctermfg=87
 
 "------------------------------------
 "                GO

@@ -7,13 +7,12 @@ let g:colors_name = "mc2bp"
 
 " Cursor
 hi CursorLine 			ctermbg=NONE 	cterm=NONE
-hi CursorLineNumber	ctermfg=15 		ctermfg=8
-hi CursorLineNr		ctermfg=15 		ctermbg=8
+hi CursorLineNumber	ctermfg=15 		ctermfg=0
+hi CursorLineNr		ctermfg=15 		ctermbg=0
 hi MatchParen 			ctermbg=244
 
 " Code and Text
 hi NonText      ctermfg=4
-hi LineNr       ctermfg=8
 hi Comment      ctermfg=77
 hi Constant     ctermfg=173
 hi Identifier   ctermfg=87         cterm=NONE
@@ -31,19 +30,19 @@ hi SignColumn	ctermbg=NONE	ctermfg=244
 hi LineNr 		ctermfg=244   	ctermbg=NONE
 
 " Folds
-hi Folded 		cterm=NONE ctermfg=7 ctermbg=8
+hi Folded 		cterm=NONE ctermfg=7 ctermbg=0
 
 " Menus
 hi Pmenu					ctermfg=244        ctermbg=0
-hi PmenuSel    		ctermfg=15         ctermbg=8
+hi PmenuSel    		ctermfg=15         ctermbg=0
 
 " StatusLine
-hi StatusLine   cterm=NONE ctermbg=8  ctermfg=15
-hi StatusLineNC cterm=NONE ctermbg=8  ctermfg=244
-hi Tabline      cterm=NONE ctermbg=8  ctermfg=244
-hi TablineFill  cterm=NONE ctermbg=8  ctermfg=15
-hi TablineSel   cterm=NONE ctermbg=8  ctermfg=15
-hi VertSplit    cterm=NONE ctermbg=8  ctermfg=8
+hi StatusLine   cterm=NONE ctermbg=0  ctermfg=15
+hi StatusLineNC cterm=NONE ctermbg=0  ctermfg=244
+hi Tabline      cterm=NONE ctermbg=0  ctermfg=244
+hi TablineFill  cterm=NONE ctermbg=0  ctermfg=15
+hi TablineSel   cterm=NONE ctermbg=0  ctermfg=15
+hi VertSplit    cterm=NONE ctermbg=0  ctermfg=0
 
 "------------------------------------
 "                COC
@@ -51,7 +50,7 @@ hi VertSplit    cterm=NONE ctermbg=8  ctermfg=8
 hi CocHighlightText ctermbg=244
 
 "------------------------------------
-"                GO
+"                Debugger 
 "------------------------------------
 hi DaPUIDecoration 		ctermfg=87
 hi DaPUIScope           ctermfg=87
@@ -61,6 +60,7 @@ hi DaPUIValue 				ctermfg=173
 hi DaPUIWatchesError 	ctermfg=1
 hi DaPUIWatchesEmpty 	ctermfg=244
 hi DaPUIWatchesValue 	ctermfg=87
+hi debugPC					ctermbg=52
 
 "------------------------------------
 "                GO

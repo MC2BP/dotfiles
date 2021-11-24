@@ -22,7 +22,9 @@ set ruler						" always show cursor position
 set noshowmode					" don't show stuff like -- INSERT --
 set laststatus=1 				" show status line if more than 1 file is open
 set statusline=\ %f\ %Y%=\ %p%%\ %l:%c\ 
-autocmd TermOpen * setlocal nonumber norelativenumber " automatically disable line numbers in terminal
+autocmd FileType rust 		setlocal tabstop=3 shiftwidth=3 softtabstop=3
+autocmd FileType go 			setlocal tabstop=3 shiftwidth=3 softtabstop=3
+autocmd FileType vim 		setlocal tabstop=3 shiftwidth=3 softtabstop=3
 
 map Q <NOP> 					" Disable ex mode
 
@@ -135,7 +137,8 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 " =====================================================================================
 "    FZF
 " =====================================================================================
-nnoremap <silent> <C-p> :Files <CR>
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-f> :Ag<CR>
 
 " =====================================================================================
 "    ToggleTerm
@@ -229,7 +232,8 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " Add OR command to organize imports
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
+" Add Format command to format current buffer
+command! -nargs=0 Format :call CocAction('format')
 " =====================================================================================
 "    LaTeX
 " =====================================================================================
@@ -266,3 +270,12 @@ let g:go_highlight_format_strings = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_highlight_variable_assignments = 1
 
+" =====================================================================================
+"    FTerm
+" =====================================================================================
+lua <<EOF
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+map('n', '<C-d>', '<CMD>lua require("FTerm").toggle()<CR>', opts)
+map('t', '<C-d>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
+EOF

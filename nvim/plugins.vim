@@ -15,7 +15,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'junegunn/fzf.vim' 			 			" File Search
 
 	" Terminal 
-	Plug 'KaraMCC/vim-termtoggle'     " Terminal
+	Plug 'numToStr/FTerm.nvim' 		" Popup terminal
 
 	" GIT
 	Plug 'tpope/vim-fugitive' 				" Git integration

@@ -12,6 +12,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'scrooloose/NERDTree' |
 		\ Plug 'Xuyuanp/nerdtree-git-plugin' |	
 		\ Plug 'ryanoasis/vim-devicons' 			" File explorer with git integration and icons
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim' 			 			" File Search
 
 	" Terminal 

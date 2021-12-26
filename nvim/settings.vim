@@ -159,6 +159,7 @@ hi GitGutterDelete 	ctermfg=1	guifg=#db0726
 " =====================================================================================
 "    Nvim-DAP
 " =====================================================================================
+nnoremap <silent> <F1> :lua require'dap'.terminate()<CR>
 nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
 nnoremap <silent> <F6> :lua require'dap'.step_over()<CR>
 nnoremap <silent> <F7> :lua require'dap'.step_into()<CR>

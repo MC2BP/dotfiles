@@ -21,12 +21,19 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'tpope/vim-fugitive' 				" Git integration
 	Plug 'airblade/vim-gitgutter' 		" Show added and removed lines
 
-	" Programming 
-	Plug 'mfussenegger/nvim-dap' 								" Debugger
-	Plug 'rcarriga/nvim-dap-ui' 								" UI for Debbuger
-	Plug 'neoclide/coc.nvim', {'branch': 'release'} 	" Autocompletion
-	Plug 'sheerun/vim-polyglot' 								" Improved syntax highliting
-	Plug 'eiiches/vim-rainbowbrackets' 					" Rainbow parenthesis
+	" Autocompletion
+	Plug 'neovim/nvim-lspconfig'				" lsp
+	Plug 'hrsh7th/cmp-nvim-lsp'				" lsp source
+	Plug 'uga-rosa/cmp-dictionary'			" dictionary source
+	Plug 'hrsh7th/nvim-cmp'						" autocompletion
+
+	" Debugging
+	Plug 'mfussenegger/nvim-dap'				" Debugger
+	Plug 'rcarriga/nvim-dap-ui'				" UI for Debbuger
+
+	" Syntax
+	Plug 'sheerun/vim-polyglot' 				" Improved syntax highliting
+	Plug 'eiiches/vim-rainbowbrackets' 		" Rainbow parenthesis
 
 	"LaTeX
 	Plug 'conornewton/vim-latex-preview'	

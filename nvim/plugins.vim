@@ -7,13 +7,16 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 	" Editor
 	Plug 'jiangmiao/auto-pairs'      " adds pairs
+	Plug 'ryanoasis/vim-devicons' 	" nice file icons
+
+	" Syntax
+	Plug 'eiiches/vim-rainbowbrackets' 		" Rainbow parenthesis
 
 	" Navigation
 	Plug 'scrooloose/NERDTree' |
-		\ Plug 'Xuyuanp/nerdtree-git-plugin' |	
-		\ Plug 'ryanoasis/vim-devicons' 			" File explorer with git integration and icons
-	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'junegunn/fzf.vim' 			 			" File Search
+		\ Plug 'Xuyuanp/nerdtree-git-plugin'
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-telescope/telescope.nvim'
 
 	" Terminal 
 	Plug 'numToStr/FTerm.nvim' 		" Popup terminal
@@ -22,19 +25,16 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'tpope/vim-fugitive' 				" Git integration
 	Plug 'airblade/vim-gitgutter' 		" Show added and removed lines
 
-	" Autocompletion
+	" LSP
 	Plug 'neovim/nvim-lspconfig'				" lsp
 	Plug 'hrsh7th/cmp-nvim-lsp'				" lsp source
 	Plug 'uga-rosa/cmp-dictionary'			" dictionary source
 	Plug 'hrsh7th/nvim-cmp'						" autocompletion
+	Plug 'hrsh7th/cmp-path'						" file path autocompletion
 
-	" Debugging
+	" DAP
 	Plug 'mfussenegger/nvim-dap'				" Debugger
 	Plug 'rcarriga/nvim-dap-ui'				" UI for Debbuger
-
-	" Syntax
-	Plug 'sheerun/vim-polyglot' 				" Improved syntax highliting
-	Plug 'eiiches/vim-rainbowbrackets' 		" Rainbow parenthesis
 
 	"LaTeX
 	Plug 'conornewton/vim-latex-preview'	

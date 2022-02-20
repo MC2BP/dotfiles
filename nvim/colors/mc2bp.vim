@@ -4,81 +4,89 @@ highlight clear
   " syntax reset
 "endif
 let g:colors_name = "mc2bp"
+set guifont=Fira\ Code:h9.5
+hi Normal					guifg=#d4d9e4	gui=none			guibg=#00051b	
 
 " Cursor
-hi CursorLine 			ctermbg=NONE 	cterm=NONE
-hi CursorLineNumber	ctermfg=15 		ctermfg=0
-hi CursorLineNr		ctermfg=15 		ctermbg=0
-hi MatchParen 			ctermbg=244
+hi CursorLine			gui=none	guibg=NONE		guifg=NONE		ctermbg=NONE 	cterm=NONE
+hi CursorLineNumber	gui=none	guibg=NONE 		guifg=#dbe6fe	ctermfg=15 		ctermfg=0
+hi CursorLineNr		gui=none	guibg=NONE 		guifg=#dbe6fe	ctermfg=15 		ctermbg=0
+hi MatchParen			gui=none	guibg=#808080	ctermbg=244
 
 " Code and Text
-hi NonText      ctermfg=4
-hi Comment      ctermfg=77
-hi Constant     ctermfg=173
-hi Identifier   ctermfg=87         cterm=NONE
-hi Number 		 ctermfg=192
-hi Statement    ctermfg=4
-hi Type         ctermfg=49
-hi Special      ctermfg=3
-hi Operator     ctermfg=7
-hi Label        ctermfg=9
-hi Function     ctermfg=228
-hi EndOfBuffer	 ctermfg=black
+hi NonText				gui=none	guifg=#0073df	ctermfg=4
+hi Comment				gui=none	guifg=#5fd787	ctermfg=77
+hi Constant				gui=none	guifg=#d7875f	ctermfg=173
+hi Identifier			gui=none	guifg=#5fffff	ctermfg=87		cterm=NONE
+hi Number				gui=none	guifg=#d7ff87	ctermfg=192
+hi Statement			gui=none	guifg=#0073df	ctermfg=4
+hi Type					gui=none	guifg=#00ffaf	ctermfg=49
+hi Special				gui=none	guifg=#e3e600	ctermfg=3
+hi Operator				gui=none	guifg=#b7c1d3	ctermfg=7
+hi Label       		gui=none	guifg=#ff3442	ctermfg=9
+hi Function    		gui=none	guifg=#ffff87	ctermfg=228
+hi EndOfBuffer			gui=none	guifg=black		ctermfg=black
 
 " SignColumn
-hi SignColumn	ctermbg=NONE	ctermfg=244
-hi LineNr 		ctermfg=244   	ctermbg=NONE
+hi SignColumn			gui=none	guifg=#808080	guibg=NONE		ctermfg=244		ctermbg=NONE
+hi LineNr				gui=none	guifg=#808080	guibg=NONE		ctermfg=244   	ctermbg=NONE
 
 " Folds
-hi Folded 		cterm=NONE ctermfg=7 ctermbg=0
+hi Folded				gui=none	guifg=#b7c1d3	guibg=#041021	cterm=NONE		ctermfg=7		ctermbg=0
 
 " Menus
-hi Pmenu					ctermfg=244        ctermbg=0
-hi PmenuSel    		ctermfg=15         ctermbg=0
+hi Pmenu					gui=none	guifg=#808080	guibg=#041021	ctermfg=244		ctermbg=0
+hi PmenuSel				gui=none	guifg=#dbe6f4	guibg=NONE 		guifg=#dbe6fe	ctermfg=15     ctermbg=0
 
 " StatusLine
-hi StatusLine   cterm=NONE ctermbg=0  ctermfg=15
-hi StatusLineNC cterm=NONE ctermbg=0  ctermfg=244
-hi Tabline      cterm=NONE ctermbg=0  ctermfg=244
-hi TablineFill  cterm=NONE ctermbg=0  ctermfg=15
-hi TablineSel   cterm=NONE ctermbg=0  ctermfg=15
-hi VertSplit    cterm=NONE ctermbg=0  ctermfg=0
+hi Tabline      		gui=none	guibg=#041021	guifg=#808080	cterm=NONE 		ctermbg=0  		ctermfg=244
+hi TablineFill  		gui=none	guibg=#041021	guifg=#dbe6fe	cterm=NONE 		ctermbg=0  		ctermfg=4
+hi TablineSel   		gui=none	guibg=#041021	guifg=#dbe6fe	cterm=NONE 		ctermbg=0  		ctermfg=15
+hi VertSplit    		gui=none	guibg=#041021	guifg=#041021	cterm=NONE 		ctermbg=NONE  	ctermfg=4
+
+hi LspDiagnosticsSignError				ctermbg=0		ctermfg=1
+hi LspDiagnosticsSignWarning			ctermbg=0		ctermfg=173
+hi LspDiagnosticsSignHint				ctermbg=0		ctermfg=3
+hi LspDiagnosticsSignInformation		ctermbg=0		ctermfg=4
+hi StatusLine			gui=none	guibg=NONE 		guifg=#dbe6fe	cterm=NONE		ctermbg=0		ctermfg=15
+hi StatusLineNC 		gui=none	guibg=#041021	guifg=#808080	cterm=NONE 		ctermbg=0  		ctermfg=244
 
 "------------------------------------
 "                COC
 "------------------------------------
-hi CocHighlightText ctermbg=244
+hi CocHighlightText		gui=none	guibg=#808080	ctermbg=244
 
 "------------------------------------
 "                Debugger 
 "------------------------------------
-hi DaPUIDecoration 		ctermfg=87
-hi DaPUIScope           ctermfg=87
-hi DaPUIVariable 			ctermfg=87
-hi DaPUIType 				ctermfg=15
-hi DaPUIValue 				ctermfg=173
-hi DaPUIWatchesError 	ctermfg=1
-hi DaPUIWatchesEmpty 	ctermfg=244
-hi DaPUIWatchesValue 	ctermfg=87
-hi debugPC					ctermbg=52
+hi DaPUIDecoration 	gui=none	guifg=#5fffff	ctermfg=87
+hi DaPUIScope        gui=none	guifg=#5fffff	ctermfg=87
+hi DaPUIVariable 		gui=none	guifg=#5fffff	ctermfg=87
+hi DaPUIType 			gui=none	guifg=#dbe6fe	ctermfg=15
+hi DaPUIValue 			gui=none	guifg=#d7875f	ctermfg=173
+hi DaPUIWatchesError gui=none	guifg=#db0726	ctermfg=1
+hi DaPUIWatchesEmpty gui=none	guifg=#808080	ctermfg=244
+hi DaPUIWatchesValue gui=none	guifg=#5fffff	ctermfg=87
+hi debugPC				gui=none	guibg=#5f0000	ctermbg=52
 
 "------------------------------------
 "                GO
 "------------------------------------
-hi goComment		ctermfg=77
-hi goFunctionCall ctermfg=228
+hi goComment			gui=none	guifg=#5fd787	ctermfg=77
+hi goFunctionCall 	gui=none	guifg=#ffff87	ctermfg=228
 " Go Types
-hi goType			ctermfg=49
-hi goFloats			ctermfg=49
-hi goSignedInts	ctermfg=49
-hi goUnsignedInts	ctermfg=49
-hi goDecimalInt   ctermfg=173
+hi goType				gui=none	guifg=#00ffaf	ctermfg=49
+hi goFloats				gui=none	guifg=#00ffaf	ctermfg=49
+hi goSignedInts		gui=none	guifg=#00ffaf	ctermfg=49
+hi goUnsignedInts		gui=none	guifg=#00ffaf	ctermfg=49
+hi goDecimalInt   	gui=none	guifg=#d7875f	ctermfg=173
 " Go Type Values
-hi goFloat			ctermfg=191
-hi goDecimalInt 	ctermfg=191
-hi goString 		ctermfg=173
-hi goRawString 	ctermfg=173
+hi goFloat				gui=none	guifg=#d7ff5f	ctermfg=191
+hi goDecimalInt 		gui=none	guifg=#d7ff5f	ctermfg=191
+hi goString 			gui=none	guifg=#d7875f	ctermfg=173
+hi goRawString 		gui=none	guifg=#d7875f	ctermfg=173
 " Go Identifier
-hi goParamName 	ctermfg=87
-hi goVarAssign 	ctermfg=87
-hi goVarDefs 		ctermfg=87
+hi goParamName 		gui=none	guifg=#5fffff	ctermfg=87
+hi goVarAssign 		gui=none	guifg=#5fffff	ctermfg=87
+hi goVarDefs 			gui=none	guifg=#5fffff	ctermfg=87
+

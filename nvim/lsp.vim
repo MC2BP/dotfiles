@@ -1,5 +1,4 @@
 lua <<EOF
-
 local cmp = require'cmp'
 cmp.setup({
  snippet = {
@@ -26,6 +25,7 @@ cmp.setup({
  },
  sources = cmp.config.sources({
 	{ name = 'nvim_lsp' },
+	{ name = 'path' },
 	{ name = 'dictionary' },
 	-- { name = 'vsnip' }, -- For vsnip users.
 	-- { name = 'luasnip' }, -- For luasnip users.
@@ -39,7 +39,7 @@ cmp.setup({
 require("cmp_dictionary").setup({
     dic = {
         --["*"] = "/usr/share/dict/en",
-        ["*"] = "/usr/share/dict/word",
+        --["*"] = "/usr/share/dict/word",
     },
     -- The following are default values, so you don't need to write them if you don't want to change them
     exact = 2,

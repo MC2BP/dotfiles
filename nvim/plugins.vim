@@ -5,6 +5,7 @@ if empty(glob('~/.config/nvim/autoload/plugin.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
+
 	" Editor
 	Plug 'jiangmiao/auto-pairs'      " adds pairs
 	Plug 'ryanoasis/vim-devicons' 	" nice file icons
@@ -13,10 +14,11 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'eiiches/vim-rainbowbrackets' 		" Rainbow parenthesis
 
 	" Navigation
-	Plug 'scrooloose/NERDTree' |
-		\ Plug 'Xuyuanp/nerdtree-git-plugin'
+	Plug 'kyazdani42/nvim-web-devicons' " for file icons
+	Plug 'kyazdani42/nvim-tree.lua'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
+	Plug 'natecraddock/workspaces.nvim'
 
 	" Terminal 
 	Plug 'numToStr/FTerm.nvim' 		" Popup terminal
@@ -38,4 +40,5 @@ call plug#begin('~/.config/nvim/plugged')
 
 	"LaTeX
 	Plug 'conornewton/vim-latex-preview'	
+
 call plug#end()

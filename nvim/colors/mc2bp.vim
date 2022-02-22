@@ -70,6 +70,13 @@ hi DaPUIWatchesValue gui=none	guifg=#5fffff	ctermfg=87
 hi debugPC				gui=none	guibg=#5f0000	ctermbg=52
 
 "------------------------------------
+"                Vim-GitGutter
+"------------------------------------
+hi GitGutterAdd		ctermfg=2	guifg=#00c06f
+hi GitGutterChange 	ctermfg=3	guifg=#e3e600
+hi GitGutterDelete 	ctermfg=1	guifg=#db0726
+
+"------------------------------------
 "                GO
 "------------------------------------
 hi goComment			gui=none	guifg=#5fd787	ctermfg=77

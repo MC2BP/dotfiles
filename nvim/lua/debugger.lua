@@ -1,9 +1,9 @@
-lua <<EOF
+------------------------------------------------------------------------------------------
+--Debug Adapter Protocol
+------------------------------------------------------------------------------------------
 local dap = require('dap')
--- config for go debugger delve
---=====================================================================================
---   Golang
---=====================================================================================
+
+-- Golang
 dap.adapters.go = function(callback, config)
 	local stdout = vim.loop.new_pipe(false)
 	local handle
@@ -31,14 +31,13 @@ dap.adapters.go = function(callback, config)
 			end)
 		end
 	end)
-	-- Wait for delve to start
-	vim.defer_fn(
+	vim.defer_fn(	-- Wait for delve to start
 		function()
 			callback({type = "server", host = "127.0.0.1", port = port})
 		end,
 		100)
 	end
-  dap.configurations.go = {
+dap.configurations.go = {
 	{
 		type = "go",
 		name = "Debug Module",
@@ -149,5 +148,4 @@ local dap, dapui = require('dap'), require('dapui')
 dap.listeners.after.event_initialized['dapui_config'] = function() dapui.open() end
 dap.listeners.before.event_terminated['dapui_config'] = function() dapui.close() end
 dap.listeners.before.event_exited['dapui_config'] = function() dapui.close() end
-EOF
 

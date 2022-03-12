@@ -33,6 +33,7 @@ hi LineNr				gui=none	guifg=#808080	guibg=NONE		ctermfg=244   	ctermbg=NONE
 
 " Folds
 hi Folded				gui=none	guifg=#b7c1d3	guibg=#041021	cterm=NONE		ctermfg=7		ctermbg=0
+hi ColorColumn																ctermbg=0
 
 " Menus
 hi Pmenu					gui=none	guifg=#808080	guibg=#041021	ctermfg=244		ctermbg=0
@@ -43,6 +44,12 @@ hi Tabline      		gui=none	guibg=#041021	guifg=#808080	cterm=NONE 		ctermbg=0  	
 hi TablineFill  		gui=none	guibg=#041021	guifg=#dbe6fe	cterm=NONE 		ctermbg=0  		ctermfg=4
 hi TablineSel   		gui=none	guibg=#041021	guifg=#dbe6fe	cterm=NONE 		ctermbg=0  		ctermfg=15
 hi VertSplit    		gui=none	guibg=#041021	guifg=#041021	cterm=NONE 		ctermbg=NONE  	ctermfg=4
+
+" Scrollbar
+hi ScrollbarError		ctermfg=1
+hi ScrollbarWarn		ctermfg=173
+hi ScrollbarHint		ctermfg=3
+hi ScrollbarInfo		ctermfg=4
 
 hi LspDiagnosticsSignError				ctermbg=0		ctermfg=1
 hi LspDiagnosticsSignWarning			ctermbg=0		ctermfg=173

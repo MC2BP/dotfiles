@@ -9,6 +9,7 @@ call plug#begin('~/.config/nvim/plugged')
 	" Editor
 	Plug 'jiangmiao/auto-pairs'      " adds pairs
 	Plug 'ryanoasis/vim-devicons' 	" nice file icons
+	Plug 'petertriho/nvim-scrollbar'	" scrollbar to quicker find lines with errors
 
 	" Syntax
 	Plug 'eiiches/vim-rainbowbrackets' 		" Rainbow parenthesis

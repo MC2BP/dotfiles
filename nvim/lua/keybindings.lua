@@ -5,8 +5,8 @@ local opts = {
 }
 
 --Splits
-map("", "<Space>v", ":vsplit<CR>", opts)
-map("", "<Space>s", ":split<CR>", opts)
+map("", "<Space>s", ":vsplit<CR>", opts)
+map("", "<Space>i", ":split<CR>", opts)
 map("", "<Space>c", ":resize +5<CR>", opts)
 map("", "<Space>t", ":resize -5<CR>", opts)
 map("", "<Space>n", ":vertical resize +5<CR>", opts)

@@ -20,6 +20,7 @@ vim.o.foldlevel = 99
 vim.o.scrolloff = 5
 vim.o.ruler = true
 vim.o.showmode = false
+vim.o.colorcolumn="120"
 
 --Golang
 vim.g['go_fold_enable'] = {'import'}
@@ -51,6 +52,9 @@ vim.o.swapfile = false
 require'nvim-tree'.setup{
 	auto_close = true,
 	update_cwd = true,
+	filters = {
+		dotfiles = true,
+	},
 	git = {
 		enable = true,
 		ignore = true,
@@ -101,6 +105,10 @@ local opt = {
 }
 map("n", "<C-b>", ":NvimTreeToggle<CR>", opt)
 
+------------------------------------------------------------------------------------------
+--Scrollbar
+------------------------------------------------------------------------------------------
+require("scrollbar").setup()
 
 ------------------------------------------------------------------------------------------
 --workspaces.nvim

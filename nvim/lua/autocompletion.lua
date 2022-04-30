@@ -59,6 +59,17 @@ require("cmp_dictionary").setup({
 ------------------------------------------------------------------------------------------
 local nvim_lsp = require('lspconfig')
 
+vim.g.diagnostics_visible = true
+function _G.toggle_diagnostics()
+  if vim.g.diagnostics_visible then
+    vim.g.diagnostics_visible = false
+    vim.diagnostic.disable()
+  else
+    vim.g.diagnostics_visible = true
+    vim.diagnostic.enable()
+  end
+end
+
 -- only set keybindings of language server is running
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -86,12 +97,19 @@ local on_attach = function(client, bufnr)
 
 	buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 	buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+	buf_set_keymap('n', '<space>l', ':call v:lua.toggle_diagnostics()<CR>', opts)
 end
+
+-- show lsp diagnostics in hover window 
+vim.o.updatetime = 250
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
 
 -- autocompletion
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local servers = { 'rust_analyzer', 'gopls', 'texlab', 'ccls' }
+local servers = { 'rust_analyzer', 'gopls', 'texlab', 'ccls', 'angularls', 'html', 'cssls', 'tsserver', 'jsonls' }
 for _, lsp in ipairs(servers) do
 	capabilities = capabilities
 	nvim_lsp[lsp].setup {

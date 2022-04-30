@@ -7,39 +7,38 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 	" Editor
-	Plug 'jiangmiao/auto-pairs'      " adds pairs
-	Plug 'ryanoasis/vim-devicons' 	" nice file icons
-	Plug 'petertriho/nvim-scrollbar'	" scrollbar to quicker find lines with errors
-
-	" Syntax
-	Plug 'eiiches/vim-rainbowbrackets' 		" Rainbow parenthesis
+	Plug 'windwp/nvim-autopairs'      " automatically create corresponding bracket
+	Plug 'ryanoasis/vim-devicons'     " nice file icons
 
 	" Navigation
-	Plug 'kyazdani42/nvim-web-devicons' " for file icons
+	Plug 'kyazdani42/nvim-web-devicons'   " for file icons
 	Plug 'kyazdani42/nvim-tree.lua'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
 	Plug 'natecraddock/workspaces.nvim'
 
 	" Terminal 
-	Plug 'numToStr/FTerm.nvim' 		" Popup terminal
+	Plug 'numToStr/FTerm.nvim'  " Popup terminal
 
 	" GIT
-	Plug 'tpope/vim-fugitive' 				" Git integration
-	Plug 'airblade/vim-gitgutter' 		" Show added and removed lines
+	Plug 'tpope/vim-fugitive'      " Git integration
+	Plug 'airblade/vim-gitgutter'  " Show added and removed lines
 
 	" LSP
-	Plug 'neovim/nvim-lspconfig'				" lsp
-	Plug 'hrsh7th/cmp-nvim-lsp'				" lsp source
-	Plug 'uga-rosa/cmp-dictionary'			" dictionary source
-	Plug 'hrsh7th/nvim-cmp'						" autocompletion
-	Plug 'hrsh7th/cmp-path'						" file path autocompletion
+	Plug 'neovim/nvim-lspconfig'    " lsp
+	Plug 'hrsh7th/cmp-nvim-lsp'     " lsp source
+	Plug 'uga-rosa/cmp-dictionary'  " dictionary source
+	Plug 'hrsh7th/nvim-cmp'         " autocompletion
+	Plug 'hrsh7th/cmp-path'         " file path autocompletion
 
 	" DAP
-	Plug 'mfussenegger/nvim-dap'				" Debugger
-	Plug 'rcarriga/nvim-dap-ui'				" UI for Debbuger
+	Plug 'mfussenegger/nvim-dap'  " Debugger
+	Plug 'rcarriga/nvim-dap-ui'   " UI for Debbuger
 
 	"LaTeX
 	Plug 'conornewton/vim-latex-preview'	
+
+	" Syntax
+	Plug 'eiiches/vim-rainbowbrackets'  " Rainbow parenthesis
 
 call plug#end()

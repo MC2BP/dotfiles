@@ -1,41 +1,7 @@
 local api = vim.api
 
 ------------------------------------------------------------------------------------------
---StatusLine
-------------------------------------------------------------------------------------------
-vim.o.fillchars = vim.o.fillchars .. "stlnc:-,stl:-"
-local fn = vim.fn
-
-local function filetype()
-	return string.format(" %s ", vim.bo.filetype):upper()
-end
-
-Statusline = {}
-Statusline.active = function()
-	return table.concat {
-		"%#VertSplit#-<",
-		"%#StatusLine# %{WebDevIconsGetFileTypeSymbol()} %f",
-		" %#VertSplit#>",
-		"%=<%#StatusLine# %%%p %l:%c",
-		" %#VertSplit#>-",
-	}
-end
-
-function Statusline.inactive()
-	return "%#VertSplit#-<%#Tabline# %{WebDevIconsGetFileTypeSymbol()} %F %#VertSplit#>-"
-end
-
-api.nvim_exec([[
-	augroup Statusline
-	au!
-	au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
-	au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
-	augroup END
-]], false)
-
-
-------------------------------------------------------------------------------------------
---Tabline
+--Functions
 ------------------------------------------------------------------------------------------
 vim.o.showtabline = 2
 
@@ -106,7 +72,7 @@ local function lsp()
 	local hints = ""
 	local info = ""
 	
-	errors = " %#LspDiagnosticsSignError# " .. count["errors"]
+	errors = "%#LspDiagnosticsSignError# " .. count["errors"]
 	warnings = " %#LspDiagnosticsSignWarning# " .. count["warnings"]
 	hints = " %#LspDiagnosticsSignHint# " .. count["hints"]
 	info = " %#LspDiagnosticsSignInformation# " .. count["info"]
@@ -114,13 +80,52 @@ local function lsp()
 	return "%#StatusLine# " .. errors .. warnings .. hints .. info .. " %#StatusLine#"
 end
 
+
+------------------------------------------------------------------------------------------
+--StatusLine
+------------------------------------------------------------------------------------------
+vim.opt.laststatus = 3
+vim.o.fillchars = vim.o.fillchars .. "stlnc: ,stl: "
+local fn = vim.fn
+
+local function filetype()
+	return string.format(" %s ", vim.bo.filetype):upper()
+end
+
+Statusline = {}
+Statusline.active = function()
+	return table.concat {
+		"%#VertSplit#<",
+		"%#StatusLine# %{WebDevIconsGetFileTypeSymbol()} %f",
+		" %#VertSplit#>",
+		"%=<",
+		lsp(),
+		"%#StatusLine# %%%p %l:%c",
+		" %#VertSplit#>",
+	}
+end
+
+function Statusline.inactive()
+	return "%#VertSplit#-<%#Tabline# %{WebDevIconsGetFileTypeSymbol()} %F %#VertSplit#>-"
+end
+
+api.nvim_exec([[
+	augroup Statusline
+	au!
+	au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
+	au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
+	augroup END
+]], false)
+
+------------------------------------------------------------------------------------------
+--Tabline
+------------------------------------------------------------------------------------------
 Tabline = function()
 	return table.concat {
 		tabs(),
 		"%=",
 		filesOfCurrentTab(),
 		"%=",
-		lsp(),
 		"  %{FugitiveStatusline()} ",
 	}
 end

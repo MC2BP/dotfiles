@@ -1,3 +1,4 @@
+local keymap = vim.keymap
 local map = vim.api.nvim_set_keymap
 local opts = { 
 	noremap = true, 
@@ -18,27 +19,26 @@ map("", "<C-n>", "<C-W><C-L>", opts)
 map("", "<C-h>", "<C-W><C-H>", opts)
 --Other
 map("", "Q", "<NOP>", opts)
+map("", "<C-a>", "<C-d>", opts)
+--Fixes
+map("", "f<space>", ":%s/	/  /g<CR>", opts) -- To replace tabs with 2 spaces
+map("", "fs", ":syntax on<CR>", opts)        -- To enable syntax in html files within angular projects
 
 
 ------------------------------------------------------------------------------------------
 --Fterm.nvim
 ------------------------------------------------------------------------------------------
-map('n', '<C-d>', '<CMD>lua require("FTerm").toggle()<CR>', opts)
+local term = require("FTerm")
+keymap.set('n', '<C-d>', function() term.toggle() end)
 map('t', '<C-d>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
 
 
 ------------------------------------------------------------------------------------------
 --Telescope
 ------------------------------------------------------------------------------------------
-map("n", "<C-p>", "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)
-map("n", "<C-f>", "<cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
-
-
-------------------------------------------------------------------------------------------
---NerdTree
-------------------------------------------------------------------------------------------
-map("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
-
+local telescope = require("telescope.builtin")
+keymap.set("n", "<C-p>", function() telescope.find_files() end, opts)
+keymap.set("n", "<C-f>", function() telescope.live_grep() end, opts)
 
 ------------------------------------------------------------------------------------------
 --LSP
@@ -49,15 +49,17 @@ map("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
 ------------------------------------------------------------------------------------------
 --DAP
 ------------------------------------------------------------------------------------------
-map("n", "<F1>", "<cmd>lua require'dap'.terminate()<CR>", opts)
-map("n", "<F5>", "<cmd>lua require'dap'.continue()<CR>", opts)
-map("n", "<F6>", "<cmd>lua require'dap'.step_over()<CR>", opts)
-map("n", "<F7>", "<cmd>lua require'dap'.step_into()<CR>", opts)
-map("n", "<F8>", "<cmd>lua require'dap'.step_out()<CR>", opts)
-map("n", "<F9>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", opts)
+local dap = require("dap")
+keymap.set("n", "<F1>", function() dap.terminate() end, opts)
+keymap.set("n", "<F5>", function() dap.continue() end, opts)
+keymap.set("n", "<F6>", function() dap.step_over() end, opts)
+keymap.set("n", "<F7>", function() dap.step_into() end, opts)
+keymap.set("n", "<F8>", function() dap.step_out() end, opts)
+keymap.set("n", "<F9>", function() dap.toggle_breakpoint() end, opts)
 
 
 ------------------------------------------------------------------------------------------
 --nvim-dap-ui
 ------------------------------------------------------------------------------------------
-map("n", "<F4>", "<cmd>lua require'dapui'.toggle()<CR>", opts)
+local dapui = require("dapui")
+keymap.set("n", "<F4>", function() dapui.toggle() end, opts)

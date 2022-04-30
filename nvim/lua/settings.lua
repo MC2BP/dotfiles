@@ -5,9 +5,8 @@ vim.cmd('colorscheme mc2bp')
 vim.cmd('filetype plugin indent on')
 vim.o.tabstop = 3
 vim.o.shiftwidth = 3
-vim.cmd('autocmd FileType rust	setlocal tabstop=3 shiftwidth=3 softtabstop=3')
-vim.cmd('autocmd FileType go		setlocal tabstop=3 shiftwidth=3 softtabstop=3')
-vim.cmd('autocmd FileType vim		setlocal tabstop=3 shiftwidth=3 softtabstop=3')
+vim.cmd('autocmd FileType rust,go.vim              setlocal tabstop=3 shiftwidth=3 softtabstop=3')
+vim.cmd('autocmd FileType typescript,html,css,json setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2')
 vim.o.autoindent = true
 vim.o.cursorline = true
 vim.o.wrap = false
@@ -47,10 +46,15 @@ vim.o.swapfile = false
 
 
 ------------------------------------------------------------------------------------------
+--autopairs
+------------------------------------------------------------------------------------------
+require('nvim-autopairs').setup{}
+
+
+------------------------------------------------------------------------------------------
 --NerdTree
 ------------------------------------------------------------------------------------------
 require'nvim-tree'.setup{
-	auto_close = true,
 	update_cwd = true,
 	filters = {
 		dotfiles = true,
@@ -61,7 +65,7 @@ require'nvim-tree'.setup{
 		timeout = 500,
 	},
 	view = {
-		width = 30,
+		width = 45,
 		hide_root_folder = true,
 		side = 'left',
 		auto_resize = false,
@@ -104,11 +108,6 @@ local opt = {
 	silent = true,
 }
 map("n", "<C-b>", ":NvimTreeToggle<CR>", opt)
-
-------------------------------------------------------------------------------------------
---Scrollbar
-------------------------------------------------------------------------------------------
-require("scrollbar").setup()
 
 ------------------------------------------------------------------------------------------
 --workspaces.nvim

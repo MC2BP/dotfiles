@@ -10,3 +10,4 @@ require('lines')
 require('settings')
 require('keybindings')
 EOF
+source $HOME/.config/nvim/neovide.vim

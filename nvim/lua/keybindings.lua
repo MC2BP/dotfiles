@@ -63,3 +63,4 @@ keymap.set("n", "<F9>", function() dap.toggle_breakpoint() end, opts)
 ------------------------------------------------------------------------------------------
 local dapui = require("dapui")
 keymap.set("n", "<F4>", function() dapui.toggle() end, opts)
+

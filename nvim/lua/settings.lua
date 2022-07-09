@@ -43,6 +43,7 @@ vim.o.splitbelow = true
 vim.o.encoding = "utf8"
 vim.o.clipboard = "unnamedplus"
 vim.o.swapfile = false
+vim.o.autoread = true
 
 
 ------------------------------------------------------------------------------------------
@@ -68,7 +69,7 @@ require'nvim-tree'.setup{
 		width = 45,
 		hide_root_folder = true,
 		side = 'left',
-		auto_resize = false,
+		adaptive_size = true,
 		mappings = {
 			custom_only = true,
 			list = {

@@ -4,7 +4,7 @@ highlight clear
   " syntax reset
 "endif
 let g:colors_name = "mc2bp"
-set guifont=Fira\ Code:h10.6
+set guifont=Fira\ Code,Nerd\ Font\ Mono,MotoyaLMaru:h10.6
 hi Normal          	guifg=#d4d9e4  gui=NONE guibg=#00051b
 
 " Cursor

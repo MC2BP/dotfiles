@@ -109,7 +109,7 @@ vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {f
 -- autocompletion
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local servers = { 'rust_analyzer', 'gopls', 'texlab', 'ccls', 'angularls', 'html', 'cssls', 'tsserver', 'jsonls' }
+local servers = { 'rust_analyzer', 'wgsl_analyzer', 'gopls', 'texlab', 'ccls', 'angularls', 'html', 'cssls', 'tsserver', 'jsonls' }
 for _, lsp in ipairs(servers) do
 	capabilities = capabilities
 	nvim_lsp[lsp].setup {

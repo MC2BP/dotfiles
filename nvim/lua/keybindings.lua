@@ -17,6 +17,11 @@ map("", "<C-t>", "<C-W><C-J>", opts)
 map("", "<C-c>", "<C-W><C-K>", opts)
 map("", "<C-n>", "<C-W><C-L>", opts)
 map("", "<C-h>", "<C-W><C-H>", opts)
+--Split movement
+map("", "<Space><C-t>", "<C-W>J", opts)
+map("", "<Space><C-c>", "<C-W>K", opts)
+map("", "<Space><C-n>", "<C-W>L", opts)
+map("", "<Space><C-h>", "<C-W>H", opts)
 --Other
 map("", "Q", "<NOP>", opts)
 map("", "<C-a>", "<C-d>", opts)

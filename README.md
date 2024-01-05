@@ -6,19 +6,26 @@ So if you're not a dvorak user, you should change the keybindings in Sway and Ne
 
 ## Software I use
 - Sway (Wayland Compositor)
-- dmenu (Application Menu)
-- moc (Music Player)
-- st (Terminal Emulator)
+- kickoff (Application Menu)
+- mocp (Music Player)
+- Foot (Foo Terminal)
 - Zsh (Shell)
-- Neovim (IDE)
+- Neovim / Neovide (IDE)
 - Firefox (Browser)
 - mupdf (PDF viewer)
 
-## Monitors
-I have a dual monitor setup, which is configured in sway.
+*Other Software*
+- greetd + tuigreet (Session Manager)
+- Mako (Notification Center)
+- xdg-desktop-portal + xdg-desktop-portal-wlr
+- Pipewire (Audio)
+- Swaylock (lockscreen)
 
-1. 3440x1440 144hz Center
-2. 1440x2560 60hz Left (In pivot mode)
+## Monitors
+I have a dual monitor setup, though mostly just use 1.
+
+1. 3440x1440 144hz Left (main)
+2. 3440x1440 60hz Right 
 
 ## Font
 
@@ -28,3 +35,4 @@ I have a dual monitor setup, which is configured in sway.
 ## Keyboard
 To make my life a little easier, I edited the dvorak keyboard layout to more suit my needs.
 For example have I remapped Capslock to Esc.
+

@@ -1,13 +1,23 @@
 # General setup
 
 ## Keyboard
-input * {
-    xkb_layout "dv"
+input type:keyboard {
+    xkb_layout dv,ch
+	 xkb_options grp:rctrl_toggle
+}
+
+input "1386:890:Wacom_One_by_Wacom_S_Pen" {
+    map_to_output DP-1
+    map_from_region 0.0x0.0 0.3x0.4
 }
 
 ## Displays
-output DP-2 position 0 0 mode 2560x1440@59.951Hz transform 270
-output DP-1 position 1440 100 mode 3440x1440@99.996Hz
+## OLD CONFIG BEFORE 2 ULTRA WIDES
+# output DP-1 position 1440 100 mode 3440x1440@144.000Hz
+# output DP-2 position 0 0 mode 2560x1440@59.951Hz transform 270
+output DP-1 position 0 0 mode 3440x1440@144.000Hz
+output DP-3 position 3440 0 mode 3440x1440@99.982Hz
+
 # output HDMI-A-1 position 1440 100 mode 3440x1440@99.992Hz
 
 # Wallpaper
@@ -17,11 +27,12 @@ output "*" bg $HOME/Images/Wallpapers/ancientmagusbride.png fill
 # bar
 bar {
  	position top
+
+	separator_symbol /
 	
 	font pango:Fira Code 20pt
 	height 24
 	status_command while date +'%a, %d. %b %Y %R   '; do sleep 60; done
-
 
 	colors {
 		statusline #d4d9e4
@@ -31,13 +42,18 @@ bar {
 	}
 }
 
+# cursor theme
+seat seat0 xcursor_theme breeze 24
 
 # Autostart
 
+# Wallpaper
+# exec mpvpaper -vs -o "--keepaspect --video-zoom=0.425 --loop" DP-1 $HOME/Videos/wp.mp4
+
 ## Sound
-exec pipewire
-exec pipewire-pulse
-exec noisetorch -i
+exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
+exec_always pipewire
+exec rm .moc/pid
 
 ## discord
 exec_always discord
@@ -48,6 +64,11 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 font pango:Fira Code 12
+
+input 9494:75:Cooler_Master_Technology_Inc._MasterMouse_S {
+    accel_profile "adaptive" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
+    pointer_accel -0.30 # set mouse sensitivity (between -1 and 1)
+}
 
 # color aliases
 set $bg-color            #00051b
@@ -91,7 +112,7 @@ bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
 # assign workspaces to monitors
-set $monitor_left output DP-2
+set $monitor_left output DP-3
 set $monitor_right output DP-1
 
 workspace $ws1 output $monitor_right
@@ -179,33 +200,34 @@ mouse_warping none
 bindsym $mod+Shift+q kill
 
 # Media player controls
-bindsym XF86AudioStop exec --no-startup-id playerctl stop
+bindsym XF86AudioStop exec --no-startup-id "wpctl set-mute @DEFAULT_SOURCE@ toggle"
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 # Volume controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id "pulsemixer --change-volume +5"
-bindsym XF86AudioLowerVolume exec --no-startup-id "pulsemixer --change-volume -5"
-bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id "wpctl set-volume -l 1.0 @DEFAULT_SINK@ 5%+"
+bindsym XF86AudioLowerVolume exec --no-startup-id "wpctl set-volume -l 1.0 @DEFAULT_SINK@ 5%-"
+
 # Screen Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
+# snipping tool
+bindsym $mod+Shift+s exec grim -g "$(slurp -b \#ffffff40)" - | wl-copy
+bindsym $mod+Shift+n exec grim -g "$(slurp -b \#ffffff40)" 
+
 # start a terminal
-bindsym $mod+Return exec --no-startup-id st
+bindsym $mod+Return exec --no-startup-id foot
 
 # start browser
 bindsym $mod+b exec --no-startup-id firefox-wayland
 # start music
-bindsym $mod+Shift+b exec --no-startup-id st -e pw-jack mocp
+bindsym $mod+Shift+b exec --no-startup-id foot pw-jack mocp
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_run -i -l 5 -nb '$bg-color' -nf '$text-color' -sb '$bg-color-selected' -sf '$text-color-selected'
+bindsym $mod+d exec --no-startup-id kickoff
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r reload
-# Key Lock
-bindsym $mod+Shift+x exec --no-startup-id i3lock --color=#000000
 
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -m 'Exit i3?' -B 'Yes' 'i3-msg exit'"
+bindsym $mod+Shift+l exec --no-startup-id swaylock -c 000000 --font "Fira Code"

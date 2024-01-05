@@ -4,7 +4,7 @@ highlight clear
   " syntax reset
 "endif
 let g:colors_name = "mc2bp"
-set guifont=Fira\ Code,Nerd\ Font\ Mono,MotoyaLMaru:h10.6
+set guifont=Fira\ Code,FiraMono\ Nerd\ Font\ Mono,MotoyaLMaru:h12
 hi Normal          	guifg=#d4d9e4  gui=NONE guibg=#00051b
 
 " Cursor
@@ -83,6 +83,7 @@ hi debugPC            gui=NONE  guibg=#5f0000  ctermbg=52
 hi GitGutterAdd     ctermfg=2  guifg=#00c06f
 hi GitGutterChange  ctermfg=3  guifg=#e3e600
 hi GitGutterDelete  ctermfg=1  guifg=#db0726
+hi gitblame         ctermfg=8
 
 "------------------------------------
 "                GO

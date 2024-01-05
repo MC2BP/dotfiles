@@ -89,32 +89,42 @@ vim.o.fillchars = vim.o.fillchars .. "stlnc: ,stl: "
 local fn = vim.fn
 
 local function filetype()
-	return string.format(" %s ", vim.bo.filetype):upper()
+    return string.format(" %s ", vim.bo.filetype):upper()
 end
 
 Statusline = {}
 Statusline.active = function()
-	return table.concat {
-		"%#VertSplit#<",
-		"%#StatusLine# %{WebDevIconsGetFileTypeSymbol()} %f",
-		" %#VertSplit#>",
-		"%=<",
-		lsp(),
-		"%#StatusLine# %%%p %l:%c",
-		" %#VertSplit#>",
-	}
+    return table.concat {
+        recording(),
+        "%#VertSplit#<",
+        "%#StatusLine# %f",
+        " %#VertSplit#>",
+        "%=<",
+        lsp(),
+        "%#StatusLine# %%%p %l:%c",
+        filetype(),
+        " %#VertSplit#>",
+    }
+end
+
+function recording()
+    r = vim.fn.reg_recording()
+    if r == "" then
+        return ""
+    end
+    return "Recording: %{reg_recording()} "
 end
 
 function Statusline.inactive()
-	return "%#VertSplit#-<%#Tabline# %{WebDevIconsGetFileTypeSymbol()} %F %#VertSplit#>-"
+    return "%#VertSplit#-<%#Tabline# %{WebDevIconsGetFileTypeSymbol()} %F %#VertSplit#>-"
 end
 
 api.nvim_exec([[
-	augroup Statusline
-	au!
-	au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
-	au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
-	augroup END
+    augroup Statusline
+    au!
+    au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
+    au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
+    augroup END
 ]], false)
 
 ------------------------------------------------------------------------------------------
@@ -126,7 +136,7 @@ Tabline = function()
 		"%=",
 		filesOfCurrentTab(),
 		"%=",
-		"  %{FugitiveStatusline()} ",
+		-- "  %{FugitiveStatusline()} ",
 	}
 end
 
